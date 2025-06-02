@@ -10,7 +10,7 @@
 
 
 
-.third-section{
+.main-section{
     width: 100%;
     min-height: 100vh;
     background: linear-gradient(#000 50%,#ffb42a 50%);
@@ -19,7 +19,7 @@
     
 }
 
-.com-com{
+.container{
     font-size: 16px;
     max-width: 700px;
     width: 100%;
@@ -63,7 +63,7 @@
     width: 100%;
     height: 300px;
     overflow: hidden;
-    
+    margin-bottom: .25rem;
 }
 .mirage img{
     width: 100%;
@@ -92,7 +92,8 @@
 }
 .justify{
     display: flex;
-    justify-content: space-between;
+    gap: .25rem;
+    ustify-content: space-between;
     width: 12%;
     margin: 10px 0px;
     
@@ -132,8 +133,9 @@ span{
 
 
     
-.com-com input{
-    width: 80%;
+input{
+   flex: 2 1 200px;
+   min-width: 0;
     padding: 7px 5px;
     text-transform: capitalize;
     color: white;
@@ -141,8 +143,8 @@ span{
     border: 2px solid #a0a0a0 ;
     
 }
-.com-com button{
-    width: 19%;
+button{
+    flex: 1 1 auto;
     padding: 8px 0px;
     text-transform: capitalize;
     border-radius: 5px;
@@ -159,7 +161,7 @@ span{
         width: 100%;
     
     }
-    .com-com{
+    .container{
         position: absolute;
         top: 0;
         left: 0;

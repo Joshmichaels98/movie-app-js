@@ -2,23 +2,24 @@ const displayDiv = document.querySelector(".display-div")
     console.log(displayDiv)
     const msgg = document.querySelector(".msg")
     console.log(msgg)
-    const thirdInput= document.querySelector(".third-input")
-    thirdInput.addEventListener("input", ()=> {
-        thirdInput.value.trim().toLowerCase().length < 1 ? msgg.style.display="block" : msgg.style.display= "none";
+    const searchInput= document.querySelector(".search-input")
+    searchInput.addEventListener("input", ()=> {
+        searchInput.value.trim().toLowerCase().length < 1 ? msgg.style.display="block" : msgg.style.display= "none";
     })
-const thirdButton= document.querySelector(".third-btn")
-thirdButton.addEventListener("click", ()=>{
+const searchButton= document.querySelector(".search-btn")
+searchButton.addEventListener("click", ()=>{
     
     
-    console.log(thirdInput.value.toLowerCase())
-    movieFunction(thirdInput.value.toLowerCase())
-    thirdInput.value= "";
+    console.log(searchInput.value.toLowerCase())
+    movieFunction(searchInput.value.toLowerCase())
+    searchInput.value= "";
 })
 
     const movieFunction= (title) => {
         fetch (`http://www.omdbapi.com/?apikey=d57aca5b&t=${title}`)
 
         .then(Response => {
+            console.log(Response)
             
             if (!Response.ok) {
             throw new Error("can't fetch movie")
@@ -26,14 +27,20 @@ thirdButton.addEventListener("click", ()=>{
         return Response.json()
     })
         .then(data=> displayMovieDetails(data))
-        .catch(error=> console.error(error))
+        .catch(error=> displayDiv.innerHTML += `<p class="msg">${error}</p>`)
 
     }
     
     
     const displayMovieDetails= info =>{
-        const display= info.Poster;
         
+        if (info.Response === "False") {
+            displayDiv.innerHTML = `<p class="msg">${info.Error}</p>`;
+            return;
+        }
+
+        const display= info.Poster;
+
         displayDiv.innerHTML += `<div class="mirage">
         <img src="${display}" alt="${info.Title}" class="item mage">
         </div>
@@ -41,7 +48,7 @@ thirdButton.addEventListener("click", ()=>{
         <div class="bonet">
         <h3 class="item hfor">${info.Title}</h3>
         <div class="justify">
-        <img src="./svg-star.jpg" height="20px" width= "20px">
+        <img src="./star.svg" height="20px" width= "20px">
         <p>${info.imdbRating}</p>
         </div>
         
